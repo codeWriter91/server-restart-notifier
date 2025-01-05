@@ -1,4 +1,3 @@
-cat <<EOT > README.md
 # Server Restart Notifier
 
 A Python script to monitor server uptime and detect restarts. This script is ideal for ensuring server availability and receiving email notifications whenever a restart is detected.
