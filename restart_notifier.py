@@ -22,6 +22,9 @@ def get_system_uptime():
 
 def send_notification(subject, body):
     """Send an email notification."""
+    utc_timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
+    body = f"{body}\n\nTimestamp: {utc_timestamp}"
+    
     msg = MIMEMultipart()
     msg['From'] = EMAIL_SENDER
     msg['To'] = EMAIL_RECEIVER
@@ -34,7 +37,7 @@ def send_notification(subject, body):
             server.starttls()
             server.login(EMAIL_SENDER, EMAIL_PASSWORD)
             server.sendmail(EMAIL_SENDER, EMAIL_RECEIVER, msg.as_string())
-        print("Notification sent successfully.")
+        print(f"Notification sent successfully at {utc_timestamp}.")
     except Exception as e:
         print(f"Failed to send notification: {e}")
 
